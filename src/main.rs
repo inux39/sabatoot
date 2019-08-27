@@ -13,7 +13,6 @@ use error::Result;
 const CONFIG_FILE: &'static str = "sabatoot.toml";
 
 fn main() {
-    let mastodon = setup();
     let hash = match git_hash() {
         Ok(o) => o,
         Err(_) => "Unknown".to_string(),
@@ -36,6 +35,7 @@ fn main() {
             .takes_value(true)
             .help("Toot text"))
         .get_matches();
+    let mastodon = setup();
 
     let text = match clap.value_of("text") {
         Some(s) => s.to_string(),
