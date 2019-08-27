@@ -12,7 +12,7 @@ const CONFIG_FILE: &'static str = "sabatoot.toml";
 include!(concat!(env!("OUT_DIR"), "/hash.rs"));
 
 fn main() {
-    let clap = App::new(env!("CARGO_PKG_NAME"))
+    let clap = App::new("SabaToot")
         .version(env!("CARGO_PKG_VERSION"))
         .version_short("v")
         .author(env!("CARGO_PKG_AUTHORS"))
