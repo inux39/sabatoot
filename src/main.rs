@@ -1,6 +1,5 @@
 use std::fs::File;
-use std::io::prelude::*;
-use std::io::Write;
+use std::io::{Write, Read};
 use std::error::Error;
 use clap::{Arg, App};
 use mammut::{Mastodon, Data};
@@ -8,20 +7,16 @@ use mammut::status_builder::Visibility;
 
 mod error;
 mod mastodon;
-use error::Result;
 
 const CONFIG_FILE: &'static str = "sabatoot.toml";
+include!(concat!(env!("OUT_DIR"), "/hash.rs"));
 
 fn main() {
-    let hash = match git_hash() {
-        Ok(o) => o,
-        Err(_) => "Unknown".to_string(),
-    };
     let clap = App::new(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .version_short("v")
         .author(env!("CARGO_PKG_AUTHORS"))
-        .about(&*format!("SabaToot {}", hash))
+        .about(&*format!("git {}", HASH))
         .arg(Arg::with_name("range")
             .short("r")
             .takes_value(true)
@@ -109,14 +104,5 @@ fn from(f: &str) -> Visibility {
         "direct" => Visibility::Direct,
         _ => Visibility::Unlisted,
     }
-}
-
-fn git_hash() -> Result<String> {
-    let git = std::process::Command::new("/usr/bin/git")
-        .args(&["rev-parse", "HEAD"])
-        .output()?;
-    let hash = String::from_utf8(git.stdout)?;
-
-    Ok(hash)
 }
 
