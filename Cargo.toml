@@ -3,6 +3,8 @@ name = "sabatoot"
 version = "0.1.0"
 authors = ["inux39 <inux39@protonmail.ch>"]
 edition = "2018"
+repository = "https://github.com/inux39/sabatoot.git"
+license = "MIT/Apache-2.0"
 
 [dependencies]
 mammut = "0.12"
