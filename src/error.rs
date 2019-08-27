@@ -1,5 +1,6 @@
 use std::fmt;
 use std::error::Error as StdError;
+use std::string::FromUtf8Error;
 use std::io::Error as IoError;
 use mammut::Error as MammutError;
 use toml::de::Error as TomlDeError;
@@ -13,6 +14,7 @@ pub enum Error {
     Mammut(MammutError),
     TomlDe(TomlDeError),
     TomlSer(TomlSerError),
+    Utf8(FromUtf8Error),
 }
 
 impl fmt::Display for Error {
@@ -28,6 +30,7 @@ impl StdError for Error {
             Error::Mammut(ref e) => e.description(),
             Error::TomlDe(ref e) => e.description(),
             Error::TomlSer(ref e) => e.description(),
+            Error::Utf8(ref e) => e.description(),
         }
     }
 }
@@ -53,6 +56,12 @@ impl From<TomlDeError> for Error {
 impl From<TomlSerError> for Error {
     fn from(error: TomlSerError) -> Self {
         Error::TomlSer(error)
+    }
+}
+
+impl From<FromUtf8Error> for Error {
+    fn from(error: FromUtf8Error) -> Self {
+        Error::Utf8(error)
     }
 }
 
