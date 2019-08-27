@@ -1,0 +1,12 @@
+[package]
+name = "sabatoot"
+version = "0.1.0"
+authors = ["inux39 <inux39@protonmail.ch>"]
+edition = "2018"
+
+[dependencies]
+mammut = "0.12"
+#mammut = { git = "https://github.com/inux39/Mammut", branch = "master" }
+clap = "2.33"
+toml = "0.4"
+
