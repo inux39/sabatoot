@@ -36,7 +36,7 @@ fn main() {
         Some(s) => s.to_string(),
         None => {
             let mut s = String::new();
-            std::io::stdin().read_line(&mut s).unwrap();
+            std::io::stdin().read_to_string(&mut s).unwrap();
             s
         },
     };
