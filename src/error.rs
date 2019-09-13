@@ -6,7 +6,7 @@ use mammut::Error as MammutError;
 use toml::de::Error as TomlDeError;
 use toml::ser::Error as TomlSerError;
 
-pub type Result<T> =  std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug)]
 pub enum Error {
