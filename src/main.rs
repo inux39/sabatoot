@@ -1,6 +1,6 @@
 use std::fs::File;
 use std::io::{Write, Read};
-use std::error::Error;
+//use std::error::Error;
 use clap::{Arg, App};
 use mammut::{Mastodon, Data};
 use mammut::status_builder::Visibility;
