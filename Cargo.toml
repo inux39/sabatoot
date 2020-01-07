@@ -8,7 +8,7 @@ license = "MIT/Apache-2.0"
 build = "src/build.rs"
 
 [dependencies]
-mammut = "0.12"
+mammut = "0.13"
 #mammut = { git = "https://github.com/inux39/Mammut", branch = "master" }
 clap = "2.33"
 toml = "0.4"
