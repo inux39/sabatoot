@@ -1,5 +1,4 @@
 use std::fmt;
-use std::error::Error as StdError;
 use std::string::FromUtf8Error;
 use std::io::Error as IoError;
 use mammut::Error as MammutError;
@@ -20,18 +19,6 @@ pub enum Error {
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{:?}", self)
-    }
-}
-
-impl StdError for Error {
-    fn description(&self) -> &str {
-        match *self {
-            Error::Io(ref e) => e.description(),
-            Error::Mammut(ref e) => e.description(),
-            Error::TomlDe(ref e) => e.description(),
-            Error::TomlSer(ref e) => e.description(),
-            Error::Utf8(ref e) => e.description(),
-        }
     }
 }
 

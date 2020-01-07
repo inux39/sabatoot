@@ -59,7 +59,7 @@ fn main() {
 fn setup() -> Mastodon {
     let mut conf = match std::env::current_exe() {
         Ok(o) => o,
-        Err(e) => panic!("{}", e.description()),
+        Err(e) => panic!("{}", e.to_string()),
     };
     conf.pop();
     conf.push(CONFIG_FILE);
@@ -70,11 +70,11 @@ fn setup() -> Mastodon {
             // TODO: unwrap()
             match file.read_to_string(&mut config) {
                 Ok(f) => f,
-                Err(e) => panic!("{}", e.description()),
+                Err(e) => panic!("{}", e.to_string()),
             };
             let data: Data = match toml::from_str(&config) {
                 Ok(o) => o,
-                Err(e) => panic!("{}", e.description()),
+                Err(e) => panic!("{}", e.to_string()),
             };
             Mastodon::from_data(data)
         },
